@@ -12,7 +12,11 @@ public class Food {
 
         boolean onSnake = false;
         while(!onSnake){
-            for Rectangle r :
+            for (Rectangle r : player.getBody()){
+                if(r.x == x && r.y == y){
+                    onSnake = true;
+                }
+            }
         }
     }
 }
