@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Food {
     private int x;
     private int y;

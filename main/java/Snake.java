@@ -27,6 +27,12 @@ public class Snake {
         move = "NOTHING";
     }
 
+    public void move(){
+        if(move != "NOTHING"){
+            Rectangle temp = new Rectangle(Game.dimension, Game.dimension);
+        }
+    }
+
     public ArrayList<Rectangle> getBody() {
         return body;
     }
