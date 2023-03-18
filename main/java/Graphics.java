@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Graphics
-extends JPanel
-implements ActionListener {
+        extends JPanel
+        implements ActionListener {
     private Timer t = new Timer(100, this);
     public String state;
 
@@ -30,6 +30,27 @@ implements ActionListener {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
+
+        if(state == "START"){
+            g2d.setColor(Color.white);
+            g2d.drawString("Press Any Key!", Game.width / 2 * Game.dimension - 40, Game.height / 2 * Game.dimension - 20);
+        }
+        else if(state == "RUNNING") {
+            g2d.setColor(Color.black);
+            g2d.fillRect(0, 0, Game.width * Game.dimension, Game.height * Game.dimension);
+
+            g2d.setColor(Color.red);
+            g2d.fillRect(f.getX() - Game.dimension, f.getY() * Game.dimension, Game.dimension, Game.dimension);
+
+            g2d.setColor(Color.green);
+            for (Rectangle r : s.getBody()) {
+                g2d.fill(r);
+            }
+        }
+        else{
+            g2d.setColor(Color.white);
+            g2d.drawString("Your Score: ", Game.width / 2 * Game.dimension - 40, Game.height / 2 * Game.dimension - 20);
+        }
     }
 
     @Override

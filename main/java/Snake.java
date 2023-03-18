@@ -66,18 +66,20 @@ public class Snake {
         }
         body.add(0, temp);
     }
-public void getX() {
-    return body.get(0).x;
-}
-public void getY(){
-        return body.get(0).x;
-}
+
     public ArrayList<Rectangle> getBody() {
         return body;
     }
 
     public void setBody(ArrayList<Rectangle> body) {
         this.body = body;
+    }
+
+    public int getX(){
+        return body.get(0).xa;
+    }
+    public int getY(){
+        return body.get(0).y;
     }
 
     public void up(){

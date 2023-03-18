@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Game
-implements KeyListener {
+        implements KeyListener {
 
     private Snake player;
     private Food food;
@@ -17,24 +17,46 @@ implements KeyListener {
     public Game(){
         window = new JFrame();
 
+        player = new Snake();
+        food = new Food(player);
+        graphics = new Graphics(this);
+
+        window.add(graphics);
+
         window.setTitle("Snake");
         window.setSize(width * dimension, height * dimension);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+    public void start(){
+        graphics.state = "RUNNING";
+    }
     public boolean check_wall_collision(){
-        if(player.getX() < 0 || player.getX() >= width * dimension || player.getY() < 0 || player.getY() >= height * dimension){
+        if(player.getX() < 0 || player.getX() >= width * dimension
+                || player.getY() < 0 || player.getY() > height * dimension){
             return true;
         }
         return false;
     }
 
-    public boolean chc_food_collsion() {
-        if(player.getX() == food.getX() * dimension && player.getY() == food.getY()){
+    public boolean check_food_collision(){
+        if(player.getX() == food.getX() * dimension && player.getY() == food.getY() * dimension){
             return true;
         }
         return false;
     }
+
+    public boolean check_self_collision(){
+        for(int i = 1; i < player.getBody().size(); i++){
+            if(player.getX() == player.getBody().get(i).x &&
+                    player.getY() == player.getBody().get(i).y){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) { }
 
