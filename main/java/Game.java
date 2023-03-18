@@ -22,7 +22,19 @@ implements KeyListener {
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    public boolean check_wall_collision(){
+        if(player.getX() < 0 || player.getX() >= width * dimension || player.getY() < 0 || player.getY() >= height * dimension){
+            return true;
+        }
+        return false;
+    }
 
+    public boolean chc_food_collsion() {
+        if(player.getX() == food.getX() * dimension && player.getY() == food.getY()){
+            return true;
+        }
+        return false;
+    }
     @Override
     public void keyTyped(KeyEvent e) { }
 
