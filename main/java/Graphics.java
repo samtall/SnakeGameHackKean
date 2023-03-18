@@ -1,88 +1,39 @@
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Snake {
-    private ArrayList<Rectangle> body;
-    private int w = Game.width;
-    private int h = Game.height;
-    private int d = Game.dimension;
+public class Graphics
+extends JPanel
+implements ActionListener {
+    private Timer t = new Timer(100, this);
+    public String state;
 
-    private String move; //NOTHING, UP, DOWN, LEFT, RIGHT
+    private Snake s;
+    private Food f;
+    private Game game;
 
-    public Snake(){
-        body = new ArrayList<>();
+    public Graphics(Game g){
+        t.start();
+        state = "START";
 
-        Rectangle temp = new Rectangle(Game.dimension, Game.dimension);
-        temp.setLocation(Game.width / 2 * Game.dimension, Game.height / 2 * Game.dimension);
-        body.add(temp);
+        game = g;
+        s = g.getPlayer();
+        f = g.getFood();
 
-        temp = new Rectangle(d, d);
-        temp.setLocation((w / 2 - 1) * d, (h / 2 - 1) * d);
-        body.add(temp);
+        //add a keyListener
+        this.addKeyListener(g);
+        this.setFocusable(true);
+        this.setFocusTraversalKeysEnabled(false);
+    }
+    public void paintComponent(java.awt.Graphics g){
+        super.paintComponent(g);
 
-        temp = new Rectangle(d, d);
-        temp.setLocation((w / 2 - 2) * d, (h / 2 - 2) * d);
-        body.add(temp);
-
-        move = "NOTHING";
+        Graphics2D g2d = (Graphics2D) g;
     }
 
-    public void move(){
-        if(move != "NOTHING"){
-            Rectangle first = body.get(0);
-            Rectangle temp = new Rectangle(Game.dimension, Game.dimension);
-            if(move == "UP"){
-                temp.setLocation(first.x, first.y - Game.dimension);
-            }
-            else if(move == "DOWN") {
-                temp.setLocation(first.x, first.y + Game.dimension);
-            }
-            else if(move == "LEFT") {
-                temp.setLocation(first.x - Game.dimension, first.y);
-            }
-            else{
-                temp.setLocation(first.x + Game.dimension, first.y);
-            }
-            body.add(0, temp);
-            body.remove(body.size() - 1);
-        }
-    }
-
-    public void grow(){
-        Rectangle first = body.get(0);
-
-        Rectangle temp = new Rectangle(Game.dimension, Game.dimension);
-        if(move == "UP"){
-            temp.setLocation(first.x, first.y - Game.dimension);
-        }
-        else if(move == "DOWN") {
-            temp.setLocation(first.x, first.y + Game.dimension);
-        }
-        else if(move == "LEFT") {
-            temp.setLocation(first.x - Game.dimension, first.y);
-        }
-        else{
-            temp.setLocation(first.x + Game.dimension, first.y);
-        }
-        body.add(0, temp);
-    }
-
-    public ArrayList<Rectangle> getBody() {
-        return body;
-    }
-
-    public void setBody(ArrayList<Rectangle> body) {
-        this.body = body;
-    }
-
-    public void up(){
-        move = "UP";
-    }
-    public void down(){
-        move = "DOWN";
-    }public void left(){
-        move = "LEFT";
-    }public void right(){
-        move = "RIGHT";
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        repaint();
     }
 }
