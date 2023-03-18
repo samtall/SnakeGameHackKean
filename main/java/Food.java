@@ -11,8 +11,9 @@ public class Food {
 
     public void random_spawn(Snake player){
 
-        boolean onSnake = false;
+        boolean onSnake = true;
         while(!onSnake){
+            onSnake = false;
             x = (int) (Math.random() * Game.width);
             y = (int)(Math.random() * Game.height);
 

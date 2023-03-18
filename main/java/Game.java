@@ -32,6 +32,20 @@ public class Game
     public void start(){
         graphics.state = "RUNNING";
     }
+
+    public void update(){
+        if(graphics.state == "RUNNING"){
+            if(check_food_collision()){
+                player.grow();
+                food.random_spawn(player);
+            } else if (check_wall_collision() || check_self_collision()) {
+                graphics.state = "END";
+            }
+            else{
+                player.move();
+            }
+        }
+    }
     public boolean check_wall_collision(){
         if(player.getX() < 0 || player.getX() >= width * dimension
                 || player.getY() < 0 || player.getY() > height * dimension){
@@ -64,19 +78,20 @@ public class Game
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
 
-        if(keyCode == KeyEvent.VK_W){
-            player.up();
-        }
-        else if(keyCode == KeyEvent.VK_S){
-            player.down();
-        }
-        else if(keyCode == KeyEvent.VK_A){
-            player.left();
+        if (graphics.state == "RUNNING") {
+            if (keyCode == KeyEvent.VK_W) {
+                player.up();
+            } else if (keyCode == KeyEvent.VK_S) {
+                player.down();
+            } else if (keyCode == KeyEvent.VK_A) {
+                player.left();
+            } else {
+                player.right();
+            }
         }
         else{
-            player.right();
+            this.start();
         }
-
     }
 
     public Snake getPlayer() {

@@ -76,7 +76,7 @@ public class Snake {
     }
 
     public int getX(){
-        return body.get(0).xa;
+        return body.get(0).x;
     }
     public int getY(){
         return body.get(0).y;

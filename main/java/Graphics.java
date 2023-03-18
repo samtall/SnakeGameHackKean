@@ -49,12 +49,14 @@ public class Graphics
         }
         else{
             g2d.setColor(Color.white);
-            g2d.drawString("Your Score: ", Game.width / 2 * Game.dimension - 40, Game.height / 2 * Game.dimension - 20);
+            g2d.drawString("Your Score: " + (s.getBody().size() - 3), Game.width / 2 * Game.dimension - 40, Game.height / 2 * Game.dimension - 20);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
+
+        game.update();
     }
 }
