@@ -46,16 +46,17 @@ public class Game
             }
         }
     }
-    public boolean check_wall_collision(){
+    private boolean check_wall_collision(){
         if(player.getX() < 0 || player.getX() >= width * dimension
-                || player.getY() < 0 || player.getY() > height * dimension){
+                || player.getY() < 0 || player.getY() >= height * dimension){
             return true;
         }
         return false;
     }
 
     public boolean check_food_collision(){
-        if(player.getX() == food.getX() * dimension && player.getY() == food.getY() * dimension){
+        if(player.getX() == food.getX() * dimension && player.getY()
+                == food.getY() * dimension){
             return true;
         }
         return false;

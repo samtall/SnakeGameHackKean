@@ -42,7 +42,7 @@ public class Graphics
             g2d.fillRect(0, 0, Game.width * Game.dimension, Game.height * Game.dimension);
 
             g2d.setColor(Color.red);
-            g2d.fillRect(f.getX() - Game.dimension, f.getY() * Game.dimension, Game.dimension, Game.dimension);
+            g2d.fillRect(f.getX() * Game.dimension, f.getY() * Game.dimension, Game.dimension, Game.dimension);
 
             g2d.setColor(Color.green);
             for (Rectangle r : s.getBody()) {
