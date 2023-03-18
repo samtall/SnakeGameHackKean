@@ -24,7 +24,7 @@ public class Game
         window.add(graphics);
 
         window.setTitle("Snake");
-        window.setSize(width * dimension, height * dimension);
+        window.setSize(width * dimension + 2, height * dimension + 4);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

@@ -17,11 +17,11 @@ public class Snake {
         body.add(temp);
 
         temp = new Rectangle(d, d);
-        temp.setLocation((w / 2 - 1) * d, (h / 2 - 1) * d);
+        temp.setLocation((w / 2 - 1) * d, (h / 2) * d);
         body.add(temp);
 
         temp = new Rectangle(d, d);
-        temp.setLocation((w / 2 - 2) * d, (h / 2 - 2) * d);
+        temp.setLocation((w / 2 - 2) * d, (h / 2) * d);
         body.add(temp);
 
         move = "NOTHING";
@@ -83,13 +83,23 @@ public class Snake {
     }
 
     public void up(){
-        move = "UP";
+        if(move != "DOWN") {
+            move = "UP";
+        }
     }
     public void down(){
-        move = "DOWN";
-    }public void left(){
-        move = "LEFT";
-    }public void right(){
-        move = "RIGHT";
+        if (move != "UP") {
+            move = "DOWN";
+        }
+    }
+    public void left() {
+        if (move != "RIGHT"){
+            move = "LEFT";
+        }
+    }
+    public void right(){
+        if(move != "LEFT") {
+            move = "RIGHT";
+        }
     }
 }

@@ -31,6 +31,8 @@ public class Graphics
 
         Graphics2D g2d = (Graphics2D) g;
 
+        g2d.setColor(Color.black);
+        g2d.fillRect(0, 0, Game.width * Game.dimension + 5, Game.height * Game.dimension + 5);
         if(state == "START"){
             g2d.setColor(Color.white);
             g2d.drawString("Press Any Key!", Game.width / 2 * Game.dimension - 40, Game.height / 2 * Game.dimension - 20);
